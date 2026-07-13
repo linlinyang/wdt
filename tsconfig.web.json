@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "lib": ["ESNext", "DOM", "DOM.Iterable"]
+  },
+  "include": [
+    "packages/**/*.ts",
+    "packages/**/*.vue",
+    "docs/**/*.vue",
+    "docs/**/*.ts",
+    "typings/env.d.ts"
+  ],
+  "exclude": ["node_modules", "**/__tests__/**"]
+}
