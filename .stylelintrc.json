@@ -1,0 +1,47 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-standard-scss",
+    "stylelint-config-standard-vue/scss"
+  ],
+  "overrides": [{
+    "files": ["**/*.scss"],
+    "customSyntax": "postcss-scss"
+  }, {
+    "files": ["**/*.(html|vue)"],
+    "customSyntax": "postcss-html"
+  }],
+  "ignoreFiles": ["**/*.ts", "**/*.js", "**/*.json"],
+  "rules": {
+    "color-no-invalid-hex": true,
+    "font-family-no-duplicate-names": true,
+    "function-calc-no-unspaced-operator": true,
+    "function-linear-gradient-no-nonstandard-direction": true,
+    "string-no-newline": true,
+    "unit-no-unknown": true,
+    "property-no-unknown": true,
+    "declaration-block-no-duplicate-properties": true,
+    "declaration-block-no-shorthand-property-overrides": true,
+    "block-no-empty": true,
+    "selector-pseudo-class-no-unknown": [
+      true, {
+        "ignorePseudoClasses": ["deep"]
+      }
+    ],
+    "selector-type-no-unknown": true,
+    "media-feature-name-no-unknown": true,
+    "number-max-precision": 2,
+    "selector-pseudo-element-no-unknown": null,
+    "selector-class-pattern": [
+      "^([a-z][a-z0-9]*)((-*|_*)[a-z0-9]+)*$",
+      {
+        "message": "Expected class selector to be kebab-case"
+      }
+    ],
+    "function-url-quotes": "always",
+    "comment-whitespace-inside": "always",
+    "no-descending-specificity": null,
+    "at-rule-no-unknown": null,
+    "declaration-block-no-redundant-longhand-properties": null
+  }
+}
