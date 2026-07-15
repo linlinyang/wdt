@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "stripInternal": true,
+    "removeComments": false,
+    "outDir": "dist/types",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"]
+  },
+  "include": [
+    "packages/**/*.ts",
+    "packages/**/*.vue",
+    "typings/env.d.ts"
+  ],
+  "exclude": ["node_modules", "**/__tests__/**"]
+}

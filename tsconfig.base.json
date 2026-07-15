@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "sourceMap": false,
+    // 编译符合escmascript标准的类字段
+    "useDefineForClassFields": true,
+    "moduleResolution": "Bundler",
+    "removeComments": true,
+    // 引入类型必须标记type
+    "verbatimModuleSyntax": false,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    // 引入包区分大小写
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    // 跳过.d.ts文件类型检查
+    "skipLibCheck": true,
+    "noImplicitThis": true,
+    "baseUrl": ".",
+    "rootDir": ".",
+    "paths": {
+      "@wdt/*": ["packages/*"]
+    }
+  }
+}
