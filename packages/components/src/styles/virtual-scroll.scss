@@ -1,0 +1,43 @@
+// 虚拟滚动组件样式
+@use './common/' as *;
+
+@include block(virtual-scroll) {
+  position: relative;
+  box-sizing: border-box;
+  height: 100%;
+  min-height: 30px;
+  overflow-y: auto;
+  width: 100%;
+
+  @include element(wrapper) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  @include when(horizontal) {
+    overflow-x: auto;
+
+    @include element(wrapper) {
+      display: flex;
+      flex-flow: row nowrap;
+      width: auto;
+    }
+
+    @include element(item) {
+      flex: 0 0 auto;
+      min-width: 0;
+    }
+  }
+  
+  @include element(track) {
+    width: 0;
+  }
+
+  @include element(item) {
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+  }
+}

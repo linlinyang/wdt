@@ -1,0 +1,60 @@
+@use "sass:map";
+// 单位尺寸集合
+
+// 组件尺寸
+$component-size: ()!default;
+$component-size: map.merge((
+  'large': 40px,
+  'default': 32px,
+  'small': 24px,
+), $component-size);
+
+$font-size: () !default;
+$font-size: map.merge(
+  (
+    'extra-large': 20px,
+    'large': 18px,
+    'medium': 16px,
+    'base': 14px,
+    'small': 13px,
+    'extra-small': 12px,
+  ),
+  $font-size
+);
+
+// 边框属性
+$border-width: 1px!default;
+$border-style: solid!default;
+
+// 圆角
+$border-radius: ()!default;
+$border-radius: map.merge((
+  'small': 2px,
+  'base': 4px,
+  'large': 8px,
+  'round': 20px,
+  'circle': 100%,
+), $border-radius);
+
+// 字体
+$font-family: ()!default;
+$font-family: map.merge((
+  '': "'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif",
+), $font-family);
+
+// 勾选图标尺寸
+$check-size: ()!default;
+$check-size: map.merge((
+  'large': (
+    'horizontal': 6px,
+    'vertical': 15px,
+  ),
+  'default': (
+    'horizontal': 5px,
+    'vertical': 12px,
+  ),
+  'small': (
+    'horizontal': 4px,
+    'vertical': 9px,
+  ),
+), $check-size);

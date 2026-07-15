@@ -1,0 +1,15 @@
+{
+  "name": "@wdt/styles",
+  "version": "1.0.0",
+  "description": "公共scss方法",
+  "main": "src/index.scss",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "exports": {
+    ".": "./src/index.scss"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,89 @@
+{
+  "name": "wdt",
+  "description": "web开发工具库",
+  "author": "yanglinlin",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "es/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "keywords": [
+    "web",
+    "vue",
+    "vite",
+    "typescript",
+    "vitest",
+    "monorepo"
+  ],
+  "style": "./theme/index.css",
+  "exports": {
+    ".": {
+      "import": "./es/index.js",
+      "require": "./es/index.js",
+      "types": "./es/index.d.ts",
+      "default": "./es/index.js"
+    },
+    "./components": {
+      "import": "./es/components/index.js",
+      "require": "./es/components/index.js",
+      "types": "./es/components/index.d.ts",
+      "default": "./es/components/index.js"
+    },
+    "./components/*": {
+      "import": "./es/components/*.js",
+      "require": "./es/components/*.js",
+      "types": [
+        "./es/components/*.vue.d.ts",
+        "./es/components/*.d.ts"
+      ],
+      "default": "./es/components/*.js"
+    },
+    "./hooks": {
+      "import": "./es/hooks/index.js",
+      "require": "./es/hooks/index.js",
+      "types": "./es/hooks/index.d.ts",
+      "default": "./es/hooks/index.js"
+    },
+    "./hooks/*": {
+      "import": "./es/hooks/*.js",
+      "require": "./es/hooks/*.js",
+      "types": "./es/hooks/*.d.ts",
+      "default": "./es/hooks/*.js"
+    },
+    "./styles": {
+      "import": "./es/styles/index.scss",
+      "require": "./es/styles/index.scss"
+    },
+    "./theme/index.css": {
+      "import": "./es/theme/index.css",
+      "require": "./es/theme/index.css"
+    },
+    "./theme/*.css": {
+      "import": "./es/theme/*.css",
+      "require": "./es/theme/*.css"
+    },
+    "./theme-chalk": {
+      "import": "./es/theme/src/index.scss",
+      "require": "./es/theme/src/index.scss"
+    },
+    "./theme-chalk/*.scss": {
+      "import": "./es/theme/src/*.scss",
+      "require": "./es/theme/src/*.scss"
+    },
+    "./typings": {
+      "types": "./es/typings/index.d.ts"
+    },
+    "./utils": {
+      "import": "./es/utils/index.js",
+      "require": "./es/utils/index.js"
+    },
+    "./global": {
+      "types": "./global.d.ts"
+    },
+    "./*": "./es/*"
+  },
+  "license": "ISC",
+  "peerDependencies": {
+    "vue": "^3.5.13"
+  }
+}

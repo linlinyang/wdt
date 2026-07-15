@@ -1,0 +1,20 @@
+{
+  "name": "@wdt/components",
+  "version": "1.0.0",
+  "description": "web公共组件",
+  "main": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./style": "./src/styles/index.scss",
+    "./base-style": "./src/styles/base.scss"
+  },
+  "keywords": [
+    "公共组件"
+  ],
+  "author": "yanglinlin",
+  "license": "ISC"
+}

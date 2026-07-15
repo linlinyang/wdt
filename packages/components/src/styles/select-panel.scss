@@ -1,0 +1,74 @@
+// 选择面板样式
+@use 'sass:map';
+@use '@wdt/styles' as IStyle;
+@use './common/' as *;
+@use './common/_private.scss' as IPrivate;
+@use './common/_functions.scss' as IFunc;
+
+$scoped: 'select-panel';
+
+@include block(select-panel) {
+  @include IPrivate.define-var-by-map($scoped, $select-panel);
+}
+
+@include block(select-panel) {
+  position: relative;
+  height: 100%;
+
+  @include element(item) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: relative;
+    font-size: IFunc.getCssVar($scoped, 'font-size');
+    color: IFunc.getCssVar($scoped, 'text-color');
+    padding: IFunc.getCssVar($scoped, 'padding');
+    height: IFunc.getCssVar($scoped, 'size');
+    border-radius: IFunc.getCssVar($scoped, 'border-radius');
+
+    @include IStyle.text-ellipsis();
+
+    &:hover:not(.is-disabled) {
+      background-color: IFunc.getCssVar($scoped, 'hover-color');
+    }
+
+    @include when(selected) {
+      color: IFunc.getCssVar($scoped, 'active-color');
+
+      &::after {
+        content: '';
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        width: IFunc.getCssVar($scoped, 'check-horizontal');
+        height: IFunc.getCssVar($scoped, 'check-vertical');
+        border-bottom: IFunc.getCssVar(border);
+        border-right: IFunc.getCssVar(border);
+        border-color: IFunc.getCssVar($scoped, 'border-color');
+        transform: translateY(-50%) rotate(45deg);
+      }
+    }
+
+    @include when(disabled) {
+      cursor: not-allowed;
+    }
+  }
+
+  @each $size in (large, small) {
+    $checkSize: map.get($check-size, $size);
+
+    @include modifier($size) {
+      @include IPrivate.define-css-var(($scoped, 'size'), map.get($component-size, $size));
+      @include IPrivate.define-css-var(($scoped, 'check-horizontal'), map.get($checkSize, 'horizontal'));
+      @include IPrivate.define-css-var(($scoped, 'check-vertical'), map.get($checkSize, 'vertical'));
+    }
+  }
+
+  @include element(wrap) {
+    padding: 0;
+    margin: 0;
+    position: relative;
+  }
+}

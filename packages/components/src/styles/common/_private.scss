@@ -1,0 +1,56 @@
+@use 'sass:map';
+@use './colors.scss' as IColor;
+@use './functions.scss' as IFunc;
+
+/**
+ * 设置变量属性
+ * @param $attribute 属性名
+ * @param $value 属性值
+ *
+ * @example
+ * define-css-var(('color', 'primary'), red)
+ * // => --wdt-color-primary: red;
+ */
+@mixin define-css-var($attribute, $value) {
+  #{IFunc.joinSpaceVarName($attribute)}: #{$value};
+}
+
+/**
+ * 通过map，注册组件变量
+ * @param $prefix 每个map属性前缀
+ * @param $varMap map属性列表
+ *
+ * @example
+ * define-var-by-map('button', ('text-color': red, 'font-size': 14px))
+ * // => { --wdt-button-text-color: red; --wdt-button-font-size: 14px; }
+ */
+@mixin define-var-by-map($prefix, $varMap) {
+  @each $attribute, $value in $varMap {
+    @if $attribute == 'default' {
+      #{IFunc.getCssVarName($prefix)}: $value;
+    } @else {
+      #{IFunc.getCssVarName($prefix, $attribute)}: $value;
+    }
+  }
+}
+
+/**
+ * 全局设置颜色变量
+ * --wdt-color-{$type}
+ * --wdt-color-{$type}-light-{$num}
+ * --wdt-color-{$type}-dark-{$num}
+ */
+@mixin define-color-type {
+  @each $type in IColor.$types {
+    $color: map.get(IColor.$colors, $type, 'base');
+    @include define-css-var(('color', $type), $color);
+  
+    @each $i in (3, 5, 7, 8, 9) {
+      $lightColor: map.get(IColor.$colors, $type, 'light-#{$i}');
+      @include define-css-var(('color', $type, 'light', $i), $lightColor);
+    }
+    
+    $darkColor: map.get(IColor.$colors, $type, 'dark-2');
+    @include define-css-var(('color', $type, 'dark-2'), $darkColor);
+  }
+}

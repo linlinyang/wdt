@@ -1,0 +1,68 @@
+@use './functions.scss' as IFunc;
+@use './config.scss' as IConf;
+
+$B: null;
+
+@mixin block($block) {
+  $B: IConf.$namespace + IConf.$common-separator + $block!global;
+
+  .#{$B} {
+    @content;
+  }
+}
+
+@mixin element($element) {
+  $selector: &;
+  $curSelector: '';
+  @each $unit in $element {
+    $curSelector: #{$curSelector + '.' + $B + IConf.$element-separator + $unit + ','}
+  }
+
+  @if (IFunc.isStateSelector($selector)) {
+    /**
+     * 包含状态的元素选择器，其子元素不放置根节点
+     * @include when(disabled) {
+     *   @include element(button) {
+     *      // some properties
+     *   }
+     * }
+     *
+     * // => .is-disabled .button {// some properties}
+     */
+    @at-root {
+      #{$selector} {
+        #{$curSelector} {
+          @content;
+        }
+      }
+    }
+  } @else {
+    @at-root {
+      #{$curSelector} {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin modifier($modifier) {
+  $selector: &;
+  $curSelector: '';
+  @each $unit in $modifier {
+    $curSelector: #{$curSelector + $selector + IConf.$modifier-separator + $unit + ','}
+  }
+
+  @at-root {
+    #{$curSelector} {
+      @content;
+    }
+  }
+}
+
+@mixin when($state) {
+  @at-root {
+    &.#{IConf.$state-prefix + $state} {
+      @content;
+    }
+  }
+}

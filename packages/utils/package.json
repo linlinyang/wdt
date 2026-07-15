@@ -1,0 +1,16 @@
+{
+  "name": "@wdt/utils",
+  "version": "1.0.0",
+  "description": "抽象公共方法",
+  "main": "src/index.ts",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

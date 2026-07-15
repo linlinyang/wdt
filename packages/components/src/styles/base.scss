@@ -1,0 +1,38 @@
+// 全局样式，按需引入/全局引入必须
+@forward './common/index.scss';
+@use './common/index.scss' as ICommon;
+@use './common/_private.scss' as IPrivate;
+@use './common/_functions' as IFunc;
+
+:root {
+  @include IPrivate.define-css-var('color-white', ICommon.$color-white);
+  @include IPrivate.define-css-var('color-black', ICommon.$color-black);
+  
+  // --wdt-color-${type}
+  // --wdt-color-${type}-light-${num}
+  // --wdt-color-${type}-dark-${num}
+  @include IPrivate.define-color-type;
+
+  // --wdt-text-color-#{$type}
+  @include IPrivate.define-var-by-map('text-color', ICommon.$text-color);
+  // --wdt-border-color-#{$type}
+  @include IPrivate.define-var-by-map('border-color', ICommon.$border-color);
+  // --wdt-fill-color-#{$type}
+  @include IPrivate.define-var-by-map('fill-color', ICommon.$fill-color);
+  // --wdt-disabled-#{$type}
+  @include IPrivate.define-var-by-map('disabled', ICommon.$disabled);
+  // --wdt-font-family
+  @include IPrivate.define-var-by-map('font-family', ICommon.$font-family);
+  // --wdt-font-size-#{$type}
+  @include IPrivate.define-var-by-map('font-size', ICommon.$font-size);
+  // --wdt-component-size-#{$type}
+  @include IPrivate.define-var-by-map('component-size', ICommon.$component-size);
+
+  // border
+  @include IPrivate.define-css-var('border-width', ICommon.$border-width);
+  @include IPrivate.define-css-var('border-style', ICommon.$border-style);
+  @include IPrivate.define-css-var('border-color-hover', ICommon.$border-color-hover);
+  @include IPrivate.define-css-var('border', IFunc.getCssVar('border-width') IFunc.getCssVar('border-style') IFunc.getCssVar('border-color'));
+  // --wdt-border-radius-#{$type}
+  @include IPrivate.define-var-by-map('border-radius', ICommon.$border-radius);
+}

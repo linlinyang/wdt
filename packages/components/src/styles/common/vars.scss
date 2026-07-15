@@ -1,0 +1,18 @@
+@use 'sass:map';
+@use './functions.scss' as IFunc;
+@use './unit.scss' as IUnit;
+
+// 选择面板css变量
+$select-panel: ()!default;
+$select-panel: map.merge((
+  'text-color': IFunc.getCssVar('text-color', 'regular'),
+  'hover-color': IFunc.getCssVar('fill-color', 'lighter'),
+  'font-size': IFunc.getCssVar('font-size', 'base'),
+  'padding': 0 32px 0 20px,
+  'size': IFunc.getCssVar('component-size'),
+  'active-color': IFunc.getCssVar('color', 'primary'),
+  'border-color': IFunc.getCssVar('color', 'primary'),
+  'check-horizontal': map.get(map.get(IUnit.$check-size, 'default'), 'horizontal'),
+  'check-vertical': map.get(map.get(IUnit.$check-size, 'default'), 'vertical'),
+  'border-radius': IFunc.getCssVar('border-radius', 'small'),
+), $select-panel);

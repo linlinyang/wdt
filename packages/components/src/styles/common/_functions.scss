@@ -1,0 +1,77 @@
+@use 'sass:map';
+@use 'sass:math';
+@use "sass:meta";
+@use 'sass:string';
+@use './config.scss' as IConf;
+
+/**
+ * 组装变量名称，并添加前缀
+ * @expample
+ * joinSpaceVarName(('button', 'text-color'))
+ * // => '--wdt-button-text-color'
+ */
+@function joinSpaceVarName($list) {
+  $name: IConf.$var-prefix + IConf.$namespace;
+  @each $item in $list {
+    $name: $name + IConf.$var-sperator + $item;
+  }
+  @return $name;
+}
+
+/**
+ * 组装多个变量名称，并添加前缀
+ * @expample
+ * getCssVarName('button', 'text-color')
+ * // => '--wdt-button-text-color'
+ */
+@function getCssVarName($args...) {
+  @return joinSpaceVarName($args);
+}
+
+/**
+ * 获取css变量
+ * @example
+ * getCssVar('button', 'text-color')
+ * // => var(--wdt-button-text-color)
+ */
+@function getCssVar($args...) {
+  @return var(#{joinSpaceVarName($args)});
+}
+
+/**
+ * 将数值乘以指定比例后，转换为百分比值
+ * @example
+ * numToPercent(3)
+ * // => 30%
+ * numToPercent(3, 0.2)
+ * // => 60%
+ */
+@function numToPercent($num, $ratio: 0.1) {
+  @return math.percentage($num * $ratio);
+}
+
+@function selectorToString($selector) {
+  // .button-text => (.button-text,)
+  $selector: meta.inspect($selector);
+  $selector: string.slice($selector, 2, -3);
+  @return $selector;
+}
+
+/**
+ * 校验字符串是否包含特定字符
+ * selectorInclude(button--text, '--')
+ * // => true
+ */
+@function selectorInclude($selector, $target) {
+  $selector: selectorToString($selector);
+
+  @if string.index($selector, $target) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+@function isStateSelector($selector) {
+  @return selectorInclude($selector, IConf.$modifier-separator) or selectorInclude($selector, IConf.$state-prefix);
+}
